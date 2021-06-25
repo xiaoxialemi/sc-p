@@ -1,0 +1,2 @@
+使用nacos作为sc服务的配置中心和和注册中心
+通过nacos的namespace作为环境的隔离区分。
