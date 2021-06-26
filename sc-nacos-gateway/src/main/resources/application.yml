@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        #\u8FD9\u4E2A\u914D\u7F6E\u662F\u4E3A\u6BCF\u4E2A\u670D\u52A1\u81EA\u52A8\u6CE8\u518C\uFF0C\u8F6C\u53D1\u7684\u8DEF\u5F84\u5C31\u662F\u6CE8\u518C\u7684\u540D\u5B57\uFF0C\u5373\u670D\u52A1\u7684application.name \u5982\u679C\u60F3\u81EA\u5B9A\u4E49\u670D\u52A1\u7684\u540D\u5B57\u548C\u8F6C\u53D1\u8DEF\u5F84\u5C31\u8981\u8BBE\u7F6E\u6210false\uFF0C\u5982\u679C\u4E3Atrue\uFF0C\u5219\u53EF\u4EE5\u7528\u4E24\u4E2A\u8DEF\u5F84\u53BB\u8BBF\u95EE\u3002
+        locator:
+          enabled: false
+          lower-case-service-id: true
+      routes:
+        - id: sc-nacos-cloud-service
+          #\u914D\u7F6Esc-nacos-cloud-service\u7684\u8D1F\u8F7D\u5747\u8861\u5730\u5740
+          uri: lb://sc-nacos-cloud-service
+          #\u8BBF\u95EEgateway\u540E\u52A0\u914D\u7F6E\u7684\u8FD9\u4E2A\u8DEF\u5F84\u5373\u53EF\u8F6C\u53D1\u5230sc-nacos-cloud-service\u670D\u52A1
+          predicates:
+            - Path=/xiaoxialemi-sncs/**
+          #\u8FD9\u4E2A\u914D\u7F6E\u662F\u8F6C\u53D1\u7684\u65F6\u5019\u628A- Path\u7684\u7B2C\u4E00\u4E2A\u8DEF\u5F84\u53BB\u6389\uFF0C\u5373\u53BB\u6389\uFF1A/xiaoxialemi
+          filters:
+                - StripPrefix=1

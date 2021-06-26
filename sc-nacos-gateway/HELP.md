@@ -1,0 +1,1 @@
+springcloud-gateway 使用nacos作为注册中心进行服务发现和转发
