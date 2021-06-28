@@ -25,6 +25,7 @@
         <module>sc-nacos-cloud</module>
         <module>sc-nacos-cloud-service</module>
         <module>sc-nacos-gateway</module>
+        <module>sc-xxl-job-admin</module>
     </modules>
 
     <properties>
