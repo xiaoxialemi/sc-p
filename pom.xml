@@ -36,6 +36,7 @@
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
         <xxl-job-core.version>2.3.0</xxl-job-core.version>
+        <alibaba-fastjson.version>1.2.73</alibaba-fastjson.version>
     </properties>
 
     <dependencies>
@@ -51,6 +52,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${alibaba-fastjson.version}</version>
         </dependency>
     </dependencies>
 
