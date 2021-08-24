@@ -66,7 +66,7 @@ public class DirectReceiver {
         }else if ("bad".equals(body.getString("goodOrBad"))){
             //拒绝队列，并且重新消费
             if(deliveryTag > 10){
-                //10次拒绝后丢弃
+                //模拟10次拒绝后丢弃
                 channel.basicReject(deliveryTag,false);
             }else {
                 channel.basicReject(deliveryTag,true);
