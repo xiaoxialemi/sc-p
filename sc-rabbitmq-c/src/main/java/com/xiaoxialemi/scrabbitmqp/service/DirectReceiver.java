@@ -73,8 +73,31 @@ public class DirectReceiver {
             }
 
         }
+    }
 
+    /**
+     * 60秒后 死信队列里的消息，会被转发到这个队列
+     * @param message
+     * @param channel
+     * @param order
+     */
+    @RabbitHandler
+    @RabbitListener(bindings = @QueueBinding(value = @Queue("order.queue"),exchange = @Exchange("order.exchange"),key = {"order"}))
+    public void processDelayQueue(Message message, Channel channel, JSONObject order){
+        log.info("订单中心收到订单:{}",JSON.toJSONString(order));
 
     }
+
+    /**
+     * 死信队列接收器，这里要注释掉，否则会直接消费，不会进行转发。
+     * @param message
+     * @param channel
+     * @param order
+     */
+//    @RabbitHandler
+//    @RabbitListener(bindings = @QueueBinding(value = @Queue("order.delay.queue"),exchange = @Exchange("order.delay.exchange"),key = {"order_delay"}))
+//    public void processDelayQueueT(Message message, Channel channel, JSONObject order){
+//        log.info("订单中心收到订单:{}",JSON.toJSONString(order));
+//    }
 
 }

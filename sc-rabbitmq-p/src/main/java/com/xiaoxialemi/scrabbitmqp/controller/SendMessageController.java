@@ -132,4 +132,25 @@ public class SendMessageController {
         return "ok";
     }
 
+    /**
+     * 延时队列推送
+     */
+    @GetMapping("sendDelayMessage")
+    public String sendDelayMessage(){
+        String messageId = String.valueOf(UUID.randomUUID());
+        String messageData = "message: delay Message ";
+
+        JSONObject delayMap = new JSONObject();
+        delayMap.put("messageId", messageId);
+        delayMap.put("messageData", messageData);
+        delayMap.put("createTime", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        rabbitTemplate.convertAndSend("order.delay.exchange", "order_delay", delayMap, message -> {
+            //why not a Date or long?
+            message.getMessageProperties().setExpiration(1000 * 60 + "");
+//            message.getMessageProperties().setDelay();
+            return message;
+        });
+        return "ok";
+    }
+
 }
